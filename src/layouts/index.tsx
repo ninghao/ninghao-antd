@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout, Button, Avatar, Icon, Menu } from 'antd';
+import Link from 'umi/link';
 import styles from './index.css';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -9,11 +10,15 @@ const BasicLayout: React.FC = props => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider theme="light">
-        <div className={styles.logo}>Ninghao</div>
+        <div className={styles.logo}>
+          <Link to="/">Ninghao</Link>
+        </div>
         <Menu mode="inline">
           <Menu.Item>
-            <Icon type="dashboard" />
-            <span>Dashboard</span>
+            <Link to="/dashboard">
+              <Icon type="dashboard" />
+              <span>Dashboard</span>
+            </Link>
           </Menu.Item>
           <SubMenu
             title={
@@ -23,7 +28,9 @@ const BasicLayout: React.FC = props => {
               </span>
             }
           >
-            <Menu.Item>Popular</Menu.Item>
+            <Menu.Item>
+              <Link to="/posts">Popular</Link>
+            </Menu.Item>
             <Menu.Item>Fresh</Menu.Item>
           </SubMenu>
         </Menu>
@@ -35,7 +42,7 @@ const BasicLayout: React.FC = props => {
             Go back
           </Button>
         </Header>
-        <Content>{props.children}</Content>
+        <Content className={styles.content}>{props.children}</Content>
         <Footer>
           <Avatar className={styles.avatar}>N</Avatar>
         </Footer>
